@@ -294,6 +294,8 @@ void runAll() {
 	
 	drawLetters(16000);
 
+	sinFun(6000);
+
 	rain(12000);
 	randomWalk(6000);
 	
@@ -310,7 +312,43 @@ void runAll() {
 	umbracoLogo(10000);
 }
 
+void sinFun(long milliseconds) {
+
+	int fps = 18;
+	int mspf = 1000 / fps;
+	long times = milliseconds / mspf;
+
+	float sin[] = { 0, .5, .866, 1, .866, .5, 0, -.5, -.866, -1, -.866, -.5 };
+
+	byte ang1 = 0;
+	byte ang2 = 3;
+
+	for (long t = 0; t < times; t++) {
+		fillEmpty(cube);
+		byte z1 = round(1.5 + sin[ang1] * 1.5);
+		byte z2 = round(2.0 + sin[ang2] * 2.0);
+		for (byte z = 0; z<4; z++) {
+			for (byte y = 0; y < 4; y++) {
+				for (byte x = 0; x < 4; x++) {
+					if (x == 0 || x == 3 || y == 0 || y == 3) {
+						cube[3-z][y][x] = z < z1;
+					}
+					else {
+						cube[3-z][y][x] = z < z2;
+					}
+				}
+			}
+		}
+		drawCube(cube, mspf);
+		ang1 = incAngle(ang1);
+		ang2 = incAngle(ang2);
+	}
+
+}
+
 void loop() {
 	runAll();
+	//sinFun(60000);
+
 }
 
