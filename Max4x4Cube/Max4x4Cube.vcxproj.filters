@@ -27,12 +27,18 @@
     <ClInclude Include="cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="max.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

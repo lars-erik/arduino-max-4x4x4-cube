@@ -9,15 +9,15 @@
 	#include "WProgram.h"
 #endif
 
-extern byte cube[4][4][4];
+extern bool cube[4][4][4];
 
-void drawCube(byte(*cube)[4][4], long milliseconds);
-void fillEmpty(byte(*cube)[4][4]);
-void fillLayerWithMatrix(byte(*cube)[4][4], byte(*matrix)[4], int z);
+void drawCube(bool(*cube)[4][4], long milliseconds);
+void fillEmpty(bool(*cube)[4][4]);
+void fillLayerWithMatrix(bool(*cube)[4][4], bool(*matrix)[4], byte z);
 
-void rotateX(byte(*source)[4][4], byte(*target)[4][4], byte angle);
-void rotateY(byte(*source)[4][4], byte(*target)[4][4], byte angle);
-void rotateZ(byte(*source)[4][4], byte(*target)[4][4], byte angle);
+void rotateX(bool(*source)[4][4], bool(*target)[4][4], byte angle);
+void rotateY(bool(*source)[4][4], bool(*target)[4][4], byte angle);
+void rotateZ(bool(*source)[4][4], bool(*target)[4][4], byte angle);
 
 #endif
 

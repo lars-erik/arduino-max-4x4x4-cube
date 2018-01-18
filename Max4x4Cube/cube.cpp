@@ -4,14 +4,14 @@
 #include "max.h"
 #include "cube.h"
 
-byte empty[4][4] = {
+bool empty[4][4] = {
 	{ 0, 0, 0, 0 },
 	{ 0, 0, 0, 0 },
 	{ 0, 0, 0, 0 },
 	{ 0, 0, 0, 0 }
 };
 
-byte cube[4][4][4];
+bool cube[4][4][4];
 
 float minAngle = PI / 6;
 float cosVals[] = { 1, .866,	.5,	0, -.5, -.866, -1, -.866, -.5, 0, .5, .866 };
@@ -40,7 +40,7 @@ void draw(word layer1, word layer2, word layer3, word layer4, long milliseconds)
 	}
 }
 
-void fillLayerWithMatrix(byte(*cube)[4][4], byte(*matrix)[4], int z) {
+void fillLayerWithMatrix(bool(*cube)[4][4], bool(*matrix)[4], byte z) {
 	for (byte x = 0; x<4; x++) {
 		for (byte y = 0; y<4; y++) {
 			cube[z][y][x] = matrix[y][x];
@@ -48,14 +48,14 @@ void fillLayerWithMatrix(byte(*cube)[4][4], byte(*matrix)[4], int z) {
 	}
 }
 
-void fillEmpty(byte(*cube)[4][4]) {
+void fillEmpty(bool(*cube)[4][4]) {
 	fillLayerWithMatrix(cube, empty, 0);
 	fillLayerWithMatrix(cube, empty, 1);
 	fillLayerWithMatrix(cube, empty, 2);
 	fillLayerWithMatrix(cube, empty, 3);
 }
 
-void multiply(byte(*source)[4][4], byte(*target)[4][4], float(*by)[3]) {
+void multiply(bool(*source)[4][4], bool(*target)[4][4], float(*by)[3]) {
 	fillEmpty(target);
 
 	for (int z = 0; z<4; z++) {
@@ -82,7 +82,7 @@ void multiply(byte(*source)[4][4], byte(*target)[4][4], float(*by)[3]) {
 	}
 }
 
-void rotateX(byte(*source)[4][4], byte(*target)[4][4], byte angle) {
+void rotateX(bool(*source)[4][4], bool(*target)[4][4], byte angle) {
 	fillEmpty(target);
 
 	for (int z = 0; z<4; z++) {
@@ -105,7 +105,7 @@ void rotateX(byte(*source)[4][4], byte(*target)[4][4], byte angle) {
 	}
 }
 
-void rotateY(byte(*source)[4][4], byte(*target)[4][4], byte angle) {
+void rotateY(bool(*source)[4][4], bool(*target)[4][4], byte angle) {
 	fillEmpty(target);
 
 	for (int z = 0; z<4; z++) {
@@ -128,7 +128,7 @@ void rotateY(byte(*source)[4][4], byte(*target)[4][4], byte angle) {
 	}
 }
 
-void rotateZ(byte(*source)[4][4], byte(*target)[4][4], byte angle) {
+void rotateZ(bool(*source)[4][4], bool(*target)[4][4], byte angle) {
 	fillEmpty(target);
 
 	for (int z = 0; z<4; z++) {
@@ -170,7 +170,7 @@ byte pins[4][2] = {
 	{ 0b00010000, 0b01000000 }
 };
 
-word toWord(byte(*matrix)[4]) {
+word toWord(bool(*matrix)[4]) {
 	word layer = 0;
 	layer |= (matrix[0][0] * 0xFF) & pins[0][0];
 	layer |= (matrix[0][1] * 0xFF) & pins[0][1];
@@ -194,7 +194,7 @@ word toWord(byte(*matrix)[4]) {
 	return layer;
 }
 
-void drawCube(byte(*cube)[4][4], long milliseconds) {
+void drawCube(bool(*cube)[4][4], long milliseconds) {
 	word layer1 = toWord(cube[0]);
 	word layer2 = toWord(cube[1]);
 	word layer3 = toWord(cube[2]);

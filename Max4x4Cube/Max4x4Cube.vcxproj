@@ -84,11 +84,13 @@
   <ItemGroup>
     <ClInclude Include="cube.h" />
     <ClInclude Include="max.h" />
+    <ClInclude Include="text.h" />
     <ClInclude Include="__vm\.Max4x4Cube.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="max.cpp" />
+    <ClCompile Include="text.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

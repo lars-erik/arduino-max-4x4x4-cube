@@ -1,15 +1,17 @@
+#include "text.h"
 #include "cube.h"
 #include <SPI.h>
 #include <math.h>
 #include "max.h"
 #include "cube.h"
+#include "text.h"
 
-extern byte cube[4][4][4];
+extern bool cube[4][4][4];
 
-byte origCube[4][4][4];
-byte cubeA[4][4][4];
-byte cubeB[4][4][4];
-byte cubeC[4][4][4];
+bool origCube[4][4][4];
+bool cubeA[4][4][4];
+bool cubeB[4][4][4];
+bool cubeC[4][4][4];
 
 void rain(long milliseconds) {
 	fillEmpty(cube);
@@ -207,14 +209,14 @@ void grower(long milliseconds) {
 
 void umbracoLogo(long milliseconds) {
 
-	byte top[4][4] = {
+	bool top[4][4] = {
 		{ 0, 0, 0, 0 },
 		{ 1, 0, 0, 1 },
 		{ 1, 0, 0, 1 },
 		{ 0, 0, 0, 0 }
 	};
 
-	byte bottom[4][4] = {
+	bool bottom[4][4] = {
 		{ 0, 0, 0, 0 },
 		{ 0, 1, 1, 0 },
 		{ 0, 1, 1, 0 },
@@ -290,6 +292,8 @@ void setup() {
 void runAll() {
 	setIntensity(0x1f);
 	
+	drawLetters(16000);
+
 	rain(12000);
 	randomWalk(6000);
 	
